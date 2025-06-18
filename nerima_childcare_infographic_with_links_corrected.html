@@ -272,6 +272,24 @@
                 margin: 5px 0;
             }
         }
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .header p {
+                font-size: 12px;
+            }
+
+            .candidate-name {
+                font-size: 16px;
+            }
+
+            .nav-button {
+                width: 100%;
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -296,10 +314,10 @@
 <table class="comparison-table">
 <thead class="table-header">
 <tr>
-<th>🏷️ 候補者</th>
-<th>🎌 所属政党</th>
-<th>👶 子育て政策</th>
-<th>📚 教育政策</th>
+<th scope="col">🏷️ 候補者</th>
+<th scope="col">🎌 所属政党</th>
+<th scope="col">👶 子育て政策</th>
+<th scope="col">📚 教育政策</th>
 </tr>
 </thead>
 <tbody>
@@ -312,13 +330,13 @@
 </td>
 <td class="candidate-cell">
 <div class="policy-text childcare-policy">
-<span class="policy-icon">💺</span>
+<span class="policy-icon" aria-hidden="true">💺</span>
                                     保育料引き下げ、学用品補助、通勤定期券補助、ベビーシート設置、育児相談窓口
                                 </div>
 </td>
 <td class="candidate-cell">
 <div class="policy-text education-policy">
-<span class="policy-icon">💰</span>
+<span class="policy-icon" aria-hidden="true">💰</span>
                                     教育費補助（学用品等）、若者が安心して学べる制度支援、教育費支援
                                 </div>
 </td>
@@ -332,13 +350,13 @@
 </td>
 <td class="candidate-cell">
 <div class="policy-text childcare-policy">
-<span class="policy-icon">💰</span>
+<span class="policy-icon" aria-hidden="true">💰</span>
                                     保育士の給与増、子育て費用の無償化
                                 </div>
 </td>
 <td class="candidate-cell">
 <div class="policy-text education-policy">
-<span class="policy-icon">👥</span>
+<span class="policy-icon" aria-hidden="true">👥</span>
                                     少人数学級の拡大
                                 </div>
 </td>
@@ -352,7 +370,7 @@
 </td>
 <td class="candidate-cell">
 <div class="policy-text childcare-policy">
-<span class="policy-icon">🏠</span>
+<span class="policy-icon" aria-hidden="true">🏠</span>
                                     非正規の女性や子育て世代支援（家賃補助や食支援）
                                 </div>
 </td>
@@ -389,13 +407,13 @@
 </td>
 <td class="candidate-cell">
 <div class="policy-text childcare-policy">
-<span class="policy-icon">🌟</span>
+<span class="policy-icon" aria-hidden="true">🌟</span>
                                     地元の保育・子育て環境への取組経験あり
                                 </div>
 </td>
 <td class="candidate-cell">
 <div class="policy-text education-policy">
-<span class="policy-icon">🏫</span>
+<span class="policy-icon" aria-hidden="true">🏫</span>
                                     公立小中学校の質の向上
                                 </div>
 </td>
@@ -408,10 +426,10 @@
 <table class="comparison-table">
 <thead class="table-header">
 <tr>
-<th>🏷️ 候補者</th>
-<th>🎌 所属政党</th>
-<th>👶 子育て政策</th>
-<th>📚 教育政策</th>
+<th scope="col">🏷️ 候補者</th>
+<th scope="col">🎌 所属政党</th>
+<th scope="col">👶 子育て政策</th>
+<th scope="col">📚 教育政策</th>
 </tr>
 </thead>
 <tbody>
@@ -424,13 +442,13 @@
 </td>
 <td class="candidate-cell">
 <div class="policy-text childcare-policy">
-<span class="policy-icon">🎨</span>
+<span class="policy-icon" aria-hidden="true">🎨</span>
                                     幼児教育の充実を政策のひとつに掲げている
                                 </div>
 </td>
 <td class="candidate-cell">
 <div class="policy-text education-policy">
-<span class="policy-icon">🌍</span>
+<span class="policy-icon" aria-hidden="true">🌍</span>
                                     「教育の充実」と明記（幼児・学校・海外交流含む）
                                 </div>
 </td>
@@ -444,7 +462,7 @@
 </td>
 <td class="candidate-cell">
 <div class="policy-text childcare-policy">
-<span class="policy-icon">🤗</span>
+<span class="policy-icon" aria-hidden="true">🤗</span>
                                     「すべての世代に寄り添う」「生涯福祉」の中に子育て含意あり
                                 </div>
 </td>
@@ -463,13 +481,13 @@
 </td>
 <td class="candidate-cell">
 <div class="policy-text childcare-policy">
-<span class="policy-icon">🎫</span>
+<span class="policy-icon" aria-hidden="true">🎫</span>
                                     子育てクーポン1万円/月支給、ママの自由時間支援プロジェクト
                                 </div>
 </td>
 <td class="candidate-cell">
 <div class="policy-text education-policy">
-<span class="policy-icon">🏮</span>
+<span class="policy-icon" aria-hidden="true">🏮</span>
                                     日本の伝統を尊重する教育の推進と明記あり
                                 </div>
 </td>
@@ -488,7 +506,7 @@
 </td>
 <td class="candidate-cell">
 <div class="policy-text education-policy">
-<span class="policy-icon">📖</span>
+<span class="policy-icon" aria-hidden="true">📖</span>
                                     「リカレント教育推進」と記載あり（社会人教育中心）
                                 </div>
 </td>
@@ -502,13 +520,13 @@
 </td>
 <td class="candidate-cell">
 <div class="policy-text childcare-policy">
-<span class="policy-icon">🎒</span>
+<span class="policy-icon" aria-hidden="true">🎒</span>
                                     子育て支援（修学旅行・学用品費・制服補助）、不登校支援、保育園待機児問題の解消
                                 </div>
 </td>
 <td class="candidate-cell">
 <div class="policy-text education-policy">
-<span class="policy-icon">👨‍🏫</span>
+<span class="policy-icon" aria-hidden="true">👨‍🏫</span>
                                     少人数学級、教員増員、教育費無償化の拡充（詳細あり）
                                 </div>
 </td>
@@ -521,10 +539,10 @@
 <table class="comparison-table">
 <thead class="table-header">
 <tr>
-<th>🏷️ 候補者</th>
-<th>🎌 所属政党</th>
-<th>👶 子育て政策</th>
-<th>📚 教育政策</th>
+<th scope="col">🏷️ 候補者</th>
+<th scope="col">🎌 所属政党</th>
+<th scope="col">👶 子育て政策</th>
+<th scope="col">📚 教育政策</th>
 </tr>
 </thead>
 <tbody>
@@ -537,13 +555,13 @@
 </td>
 <td class="candidate-cell">
 <div class="policy-text childcare-policy">
-<span class="policy-icon">🏥</span>
+<span class="policy-icon" aria-hidden="true">🏥</span>
                                     保育無償化、子ども医療費無償化、家賃補助と連動した育児支援
                                 </div>
 </td>
 <td class="candidate-cell">
 <div class="policy-text education-policy">
-<span class="policy-icon">🎓</span>
+<span class="policy-icon" aria-hidden="true">🎓</span>
                                     義務教育の完全無償化、副教材・制服などの負担軽減、教育の質向上
                                 </div>
 </td>
@@ -557,13 +575,13 @@
 </td>
 <td class="candidate-cell">
 <div class="policy-text childcare-policy">
-<span class="policy-icon">💡</span>
+<span class="policy-icon" aria-hidden="true">💡</span>
                                     子育て支援と明記（詳細なし）
                                 </div>
 </td>
 <td class="candidate-cell">
 <div class="policy-text education-policy">
-<span class="policy-icon">👩‍⚕️</span>
+<span class="policy-icon" aria-hidden="true">👩‍⚕️</span>
                                     看護学校等の無償化と明記
                                 </div>
 </td>
@@ -577,13 +595,13 @@
 </td>
 <td class="candidate-cell">
 <div class="policy-text childcare-policy">
-<span class="policy-icon">🎹</span>
+<span class="policy-icon" aria-hidden="true">🎹</span>
                                     月1万円の習い事クーポン制度導入
                                 </div>
 </td>
 <td class="candidate-cell">
 <div class="policy-text education-policy">
-<span class="policy-icon">🏛️</span>
+<span class="policy-icon" aria-hidden="true">🏛️</span>
                                     公立教育重視、学校検査・入試制度の改革、中学校までの支援強調
                                 </div>
 </td>
@@ -597,13 +615,13 @@
 </td>
 <td class="candidate-cell">
 <div class="policy-text childcare-policy">
-<span class="policy-icon">🏥</span>
+<span class="policy-icon" aria-hidden="true">🏥</span>
                                     病児・病後児保育の拡充、学童クラブの量と質の充実
                                 </div>
 </td>
 <td class="candidate-cell">
 <div class="policy-text education-policy">
-<span class="policy-icon">🍽️</span>
+<span class="policy-icon" aria-hidden="true">🍽️</span>
                                     実績欄に「私立高校無償化」「給食費無償化」とあり
                                 </div>
 </td>
@@ -635,7 +653,7 @@
 </td>
 <td class="candidate-cell">
 <div class="policy-text childcare-policy">
-<span class="policy-icon">🏢</span>
+<span class="policy-icon" aria-hidden="true">🏢</span>
                                     待機児童ゼロ、認可保育所の増設、早期支援の仕組みづくり
                                 </div>
 </td>
@@ -650,9 +668,9 @@
 </div>
 </div>
 <div class="footer">
-<span class="footer-icon">💝</span>
+<span class="footer-icon" aria-hidden="true">💝</span>
             みんなで子育てしやすい練馬区を！
-            <span class="footer-icon">✨</span>
+            <span class="footer-icon" aria-hidden="true">✨</span>
 </div>
 </div>
 <script>
