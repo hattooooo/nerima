@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>練馬区 子育て・教育政策 比較表</title>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic UI', 'Meiryo UI', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            overflow: hidden;
+            max-width: 1000px;
+            width: 100%;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '👶📚';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .navigation {
+            background: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .nav-button.active {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            transform: scale(1.05);
+        }
+        
+        .page-indicator {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .table-container {
+            padding: 25px;
+            overflow-x: auto;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        .table-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .table-header th {
+            padding: 18px 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            border-right: 2px solid rgba(255,255,255,0.2);
+        }
+        
+        .table-header th:last-child {
+            border-right: none;
+        }
+        
+        .table-header th:first-child {
+            width: 120px;
+        }
+        
+        .table-header th:nth-child(2) {
+            width: 130px;
+        }
+        
+        .candidate-row {
+            transition: all 0.3s ease;
+        }
+        
+        .candidate-row:hover {
+            background: #f8f9ff;
+            transform: scale(1.02);
+        }
+        
+        .candidate-row:nth-child(even) {
+            background: #fafbff;
+        }
+        
+        .candidate-cell {
+            padding: 20px 15px;
+            text-align: center;
+            border-right: 1px solid #e8e8e8;
+            vertical-align: middle;
+        }
+        
+        .candidate-cell:last-child {
+            border-right: none;
+        }
+        
+        .candidate-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .party-tag {
+            background: linear-gradient(45deg, #e8f4f8, #d4e7f4);
+            color: #2c5aa0;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        
+        .policy-text {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+            text-align: left;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            margin: 5px 0;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .no-policy {
+            color: #999;
+            font-style: italic;
+            text-align: center;
+            background: #f5f5f5;
+        }
+        
+        .policy-icon {
+            font-size: 20px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+        
+        .childcare-policy {
+            border-left: 4px solid #ff6b6b;
+        }
+        
+        .education-policy {
+            border-left: 4px solid #4ecdc4;
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .footer {
+            background: #f0f0f0;
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .footer-icon {
+            font-size: 18px;
+            margin: 0 8px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .table-container {
+                padding: 15px;
+            }
+            
+            .candidate-cell {
+                padding: 15px 10px;
+            }
+            
+            .policy-text {
+                font-size: 12px;
+                padding: 8px;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-button {
+                width: 200px;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>練馬区 子育て・教育政策 比較表</h1>
+<p>候補者別 政策一覧</p>
+</div>
+<div class="navigation">
+<div class="nav-buttons">
+<button class="nav-button active" onclick="showPage(1)">候補者 1-5</button>
+<button class="nav-button" onclick="showPage(2)">候補者 6-10</button>
+<button class="nav-button" onclick="showPage(3)">候補者 11-16</button>
+</div>
+<div class="page-indicator">
+<span id="page-info">1ページ目 / 全3ページ</span>
+</div>
+</div>
+<div class="table-container">
+<!-- Page 1: 候補者 1-5 -->
+<div class="page active" id="page1">
+<table class="comparison-table">
+<thead class="table-header">
+<tr>
+<th>🏷️ 候補者</th>
+<th>🎌 所属政党</th>
+<th>👶 子育て政策</th>
+<th>📚 教育政策</th>
+</tr>
+</thead>
+<tbody>
+<tr class="candidate-row">
+<td class="candidate-cell">
+<div class="candidate-name"><a href="https://hana-yamaguchi.com" rel="noopener" target="_blank">山口 花</a></div>
+</td>
+<td class="candidate-cell">
+<div class="party-tag">国民民主党</div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text childcare-policy">
+<span class="policy-icon">💺</span>
+                                    保育料引き下げ、学用品補助、通勤定期券補助、ベビーシート設置、育児相談窓口
+                                </div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text education-policy">
+<span class="policy-icon">💰</span>
+                                    教育費補助（学用品等）、若者が安心して学べる制度支援、教育費支援
+                                </div>
+</td>
+</tr>
+<tr class="candidate-row">
+<td class="candidate-cell">
+<div class="candidate-name"><a href="https://taguchiyuri.hp.peraichi.com" rel="noopener" target="_blank">たぐち ゆり</a></div>
+</td>
+<td class="candidate-cell">
+<div class="party-tag">れいわ新選組</div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text childcare-policy">
+<span class="policy-icon">💰</span>
+                                    保育士の給与増、子育て費用の無償化
+                                </div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text education-policy">
+<span class="policy-icon">👥</span>
+                                    少人数学級の拡大
+                                </div>
+</td>
+</tr>
+<tr class="candidate-row">
+<td class="candidate-cell">
+<div class="candidate-name"><a href="https://furuyama-yoko.tokyo/" rel="noopener" target="_blank">ふるやま 葉子</a></div>
+</td>
+<td class="candidate-cell">
+<div class="party-tag">無所属</div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text childcare-policy">
+<span class="policy-icon">🏠</span>
+                                    非正規の女性や子育て世代支援（家賃補助や食支援）
+                                </div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text no-policy">
+                                    記載なし
+                                </div>
+</td>
+</tr>
+<tr class="candidate-row">
+<td class="candidate-cell">
+<div class="candidate-name"><a href="https://kobayashi-kenji.com" rel="noopener" target="_blank">小林 けんじ</a></div>
+</td>
+<td class="candidate-cell">
+<div class="party-tag">公明党</div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text no-policy">
+                                    記載なし
+                                </div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text no-policy">
+                                    記載なし
+                                </div>
+</td>
+</tr>
+<tr class="candidate-row">
+<td class="candidate-cell">
+<div class="candidate-name"><a href="https://ojimakohei.jp" rel="noopener" target="_blank">おじま 紘平</a></div>
+</td>
+<td class="candidate-cell">
+<div class="party-tag">都民ファーストの会</div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text childcare-policy">
+<span class="policy-icon">🌟</span>
+                                    地元の保育・子育て環境への取組経験あり
+                                </div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text education-policy">
+<span class="policy-icon">🏫</span>
+                                    公立小中学校の質の向上
+                                </div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Page 2: 候補者 6-10 -->
+<div class="page" id="page2">
+<table class="comparison-table">
+<thead class="table-header">
+<tr>
+<th>🏷️ 候補者</th>
+<th>🎌 所属政党</th>
+<th>👶 子育て政策</th>
+<th>📚 教育政策</th>
+</tr>
+</thead>
+<tbody>
+<tr class="candidate-row">
+<td class="candidate-cell">
+<div class="candidate-name"><a href="https://shibazaki-mikio.jp" rel="noopener" target="_blank">しばざき 幹男</a></div>
+</td>
+<td class="candidate-cell">
+<div class="party-tag">自民党</div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text childcare-policy">
+<span class="policy-icon">🎨</span>
+                                    幼児教育の充実を政策のひとつに掲げている
+                                </div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text education-policy">
+<span class="policy-icon">🌍</span>
+                                    「教育の充実」と明記（幼児・学校・海外交流含む）
+                                </div>
+</td>
+</tr>
+<tr class="candidate-row">
+<td class="candidate-cell">
+<div class="candidate-name"><a href="https://yamaka-akemi.com" rel="noopener" target="_blank">やまか あけみ</a></div>
+</td>
+<td class="candidate-cell">
+<div class="party-tag">自民党</div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text childcare-policy">
+<span class="policy-icon">🤗</span>
+                                    「すべての世代に寄り添う」「生涯福祉」の中に子育て含意あり
+                                </div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text no-policy">
+                                    記載なし
+                                </div>
+</td>
+</tr>
+<tr class="candidate-row">
+<td class="candidate-cell">
+<div class="candidate-name"><a href="https://go2senkyo.com/seijika/191826" rel="noopener" target="_blank">江崎 さなえ</a></div>
+</td>
+<td class="candidate-cell">
+<div class="party-tag">参政党</div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text childcare-policy">
+<span class="policy-icon">🎫</span>
+                                    子育てクーポン1万円/月支給、ママの自由時間支援プロジェクト
+                                </div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text education-policy">
+<span class="policy-icon">🏮</span>
+                                    日本の伝統を尊重する教育の推進と明記あり
+                                </div>
+</td>
+</tr>
+<tr class="candidate-row">
+<td class="candidate-cell">
+<div class="candidate-name"><a href="https://ogawa-keiko.jp/" rel="noopener" target="_blank">小川 けいこ</a></div>
+</td>
+<td class="candidate-cell">
+<div class="party-tag">無所属</div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text no-policy">
+                                    記載なし
+                                </div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text education-policy">
+<span class="policy-icon">📖</span>
+                                    「リカレント教育推進」と記載あり（社会人教育中心）
+                                </div>
+</td>
+</tr>
+<tr class="candidate-row">
+<td class="candidate-cell">
+<div class="candidate-name"><a href="https://toya-jcp.info/" rel="noopener" target="_blank">とや 英津子</a></div>
+</td>
+<td class="candidate-cell">
+<div class="party-tag">日本共産党</div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text childcare-policy">
+<span class="policy-icon">🎒</span>
+                                    子育て支援（修学旅行・学用品費・制服補助）、不登校支援、保育園待機児問題の解消
+                                </div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text education-policy">
+<span class="policy-icon">👨‍🏫</span>
+                                    少人数学級、教員増員、教育費無償化の拡充（詳細あり）
+                                </div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Page 3: 候補者 11-16 -->
+<div class="page" id="page3">
+<table class="comparison-table">
+<thead class="table-header">
+<tr>
+<th>🏷️ 候補者</th>
+<th>🎌 所属政党</th>
+<th>👶 子育て政策</th>
+<th>📚 教育政策</th>
+</tr>
+</thead>
+<tbody>
+<tr class="candidate-row">
+<td class="candidate-cell">
+<div class="candidate-name"><a href="https://fujiitomonori.com" rel="noopener" target="_blank">藤井 とものり</a></div>
+</td>
+<td class="candidate-cell">
+<div class="party-tag">立憲民主党</div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text childcare-policy">
+<span class="policy-icon">🏥</span>
+                                    保育無償化、子ども医療費無償化、家賃補助と連動した育児支援
+                                </div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text education-policy">
+<span class="policy-icon">🎓</span>
+                                    義務教育の完全無償化、副教材・制服などの負担軽減、教育の質向上
+                                </div>
+</td>
+</tr>
+<tr class="candidate-row">
+<td class="candidate-cell">
+<div class="candidate-name"><a href="https://ua13t.com" rel="noopener" target="_blank">うえま あつこ</a></div>
+</td>
+<td class="candidate-cell">
+<div class="party-tag">再生の道</div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text childcare-policy">
+<span class="policy-icon">💡</span>
+                                    子育て支援と明記（詳細なし）
+                                </div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text education-policy">
+<span class="policy-icon">👩‍⚕️</span>
+                                    看護学校等の無償化と明記
+                                </div>
+</td>
+</tr>
+<tr class="candidate-row">
+<td class="candidate-cell">
+<div class="candidate-name"><a href="https://keitawakatabi.com" rel="noopener" target="_blank">わかたび 啓太</a></div>
+</td>
+<td class="candidate-cell">
+<div class="party-tag">日本維新の会</div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text childcare-policy">
+<span class="policy-icon">🎹</span>
+                                    月1万円の習い事クーポン制度導入
+                                </div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text education-policy">
+<span class="policy-icon">🏛️</span>
+                                    公立教育重視、学校検査・入試制度の改革、中学校までの支援強調
+                                </div>
+</td>
+</tr>
+<tr class="candidate-row">
+<td class="candidate-cell">
+<div class="candidate-name"><a href="https://www.k-muramatsu.com" rel="noopener" target="_blank">村松 一希</a></div>
+</td>
+<td class="candidate-cell">
+<div class="party-tag">都民ファーストの会</div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text childcare-policy">
+<span class="policy-icon">🏥</span>
+                                    病児・病後児保育の拡充、学童クラブの量と質の充実
+                                </div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text education-policy">
+<span class="policy-icon">🍽️</span>
+                                    実績欄に「私立高校無償化」「給食費無償化」とあり
+                                </div>
+</td>
+</tr>
+<tr class="candidate-row">
+<td class="candidate-cell">
+<div class="candidate-name"><a href="https://j-j-j-j.com" rel="noopener" target="_blank">前田 太一</a></div>
+</td>
+<td class="candidate-cell">
+<div class="party-tag">自由を守る会</div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text no-policy">
+                                    記載なし
+                                </div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text no-policy">
+                                    記載なし
+                                </div>
+</td>
+</tr>
+<tr class="candidate-row">
+<td class="candidate-cell">
+<div class="candidate-name">ながおか 幸則</div>
+</td>
+<td class="candidate-cell">
+<div class="party-tag">練馬未来の党</div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text childcare-policy">
+<span class="policy-icon">🏢</span>
+                                    待機児童ゼロ、認可保育所の増設、早期支援の仕組みづくり
+                                </div>
+</td>
+<td class="candidate-cell">
+<div class="policy-text no-policy">
+                                    記載なし（子どもの可能性を引き出す施策とあるが具体性なし）
+                                </div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="footer">
+<span class="footer-icon">💝</span>
+            みんなで子育てしやすい練馬区を！
+            <span class="footer-icon">✨</span>
+</div>
+</div>
+<script>
+        function showPage(pageNumber) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Hide all buttons active state
+            const buttons = document.querySelectorAll('.nav-button');
+            buttons.forEach(button => button.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById('page' + pageNumber).classList.add('active');
+            
+            // Activate selected button
+            buttons[pageNumber - 1].classList.add('active');
+            
+            // Update page indicator
+            const pageInfo = document.getElementById('page-info');
+            pageInfo.textContent = pageNumber + 'ページ目 / 全3ページ';
+        }
+    </script>
+</body>
+</html>
